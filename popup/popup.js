@@ -16,6 +16,17 @@ const alternativesList = document.getElementById('alternatives-list');
 const historySection = document.getElementById('history-section');
 const historyList = document.getElementById('history-list');
 
+// Trust Badge Elements
+const trustBadge = document.getElementById('trust-badge');
+const trustGrade = document.getElementById('trust-grade');
+const trustProgress = document.getElementById('trust-progress');
+const trustStatus = document.getElementById('trust-status');
+const copyBtn = document.getElementById('copy-btn');
+const toast = document.getElementById('toast');
+
+// Current scan result for copy functionality
+let currentScanResult = null;
+
 // Store ToS URL for "Go to ToS" button
 let pendingTosUrl = null;
 
@@ -147,6 +158,104 @@ function getSeverityColor(severity) {
 }
 
 /**
+ * Convert severity level to letter grade
+ */
+function severityToGrade(severity) {
+  const grades = { 0: 'A', 1: 'B', 2: 'C', 3: 'F' };
+  return grades[severity] ?? 'A';
+}
+
+/**
+ * Render the trust score badge
+ */
+function renderTrustBadge(severity, hostname) {
+  if (!trustBadge) return;
+
+  const grade = severityToGrade(severity);
+  const config = SEVERITY_CONFIG[severity] || SEVERITY_CONFIG[0];
+
+  // Update grade display
+  trustGrade.textContent = grade;
+  trustGrade.className = `trust-grade grade-${grade.toLowerCase()}`;
+
+  // Update progress bar
+  trustProgress.className = `trust-progress progress-${grade.toLowerCase()}`;
+
+  // Update status text
+  trustStatus.textContent = config.name;
+
+  // Show the badge
+  trustBadge.classList.remove('hidden');
+}
+
+/**
+ * Hide trust badge
+ */
+function hideTrustBadge() {
+  if (trustBadge) {
+    trustBadge.classList.add('hidden');
+  }
+}
+
+/**
+ * Generate shareable text from scan result
+ */
+function generateShareableText(result, hostname) {
+  const severity = result.overallSeverity ?? 0;
+  const grade = severityToGrade(severity);
+  const config = SEVERITY_CONFIG[severity] || SEVERITY_CONFIG[0];
+  const clauses = result.clauses || [];
+
+  let text = `🛡️ Blind-Sight Privacy Report\n`;
+  text += `━━━━━━━━━━━━━━━━━━━━━━━━\n`;
+  text += `📊 Grade: ${grade} (${config.name})\n`;
+  text += `🌐 Site: ${hostname}\n`;
+  text += `📋 Issues Found: ${clauses.length}\n\n`;
+
+  if (clauses.length > 0) {
+    clauses.slice(0, 5).forEach(clause => {
+      const info = CLAUSE_INFO[clause.type] || CLAUSE_INFO.DEFAULT;
+      text += `${info.icon} ${info.name} - ${clause.explanation?.slice(0, 60) || 'No details'}...\n`;
+    });
+    if (clauses.length > 5) {
+      text += `... and ${clauses.length - 5} more\n`;
+    }
+  }
+
+  text += `\n━━━━━━━━━━━━━━━━━━━━━━━━\n`;
+  text += `Analyzed by Blind-Sight 🛡️`;
+
+  return text;
+}
+
+/**
+ * Copy text to clipboard and show toast
+ */
+async function copyToClipboard() {
+  if (!currentScanResult) return;
+
+  try {
+    const hostname = currentScanResult.hostname || 'unknown';
+    const text = generateShareableText(currentScanResult, hostname);
+    await navigator.clipboard.writeText(text);
+    showToast();
+  } catch (err) {
+    console.error('Failed to copy:', err);
+  }
+}
+
+/**
+ * Show toast notification
+ */
+function showToast() {
+  if (!toast) return;
+  toast.classList.add('show');
+  setTimeout(() => {
+    toast.classList.remove('show');
+  }, 2000);
+}
+
+/**
  * Update the status indicator
  * @param {'idle' | 'scanning' | 'safe' | 'notable' | 'caution' | 'danger' | 'error' | 'warning'} status 
  * @param {string} message 
@@ -243,7 +352,9 @@ function hideResults() {
   retryBtn.classList.add('hidden');
   gotoTosBtn.classList.add('hidden');
   alternativesSection.classList.add('hidden');
+  hideTrustBadge();
   pendingTosUrl = null;
+  currentScanResult = null;
 }
 
 /**
@@ -362,7 +473,7 @@ function handleScanResult(response) {
     if (response.fetchFailed) {
       updateStatus('error', 'Fetch failed');
       showResults('danger', '🚫 Could Not Retrieve ToS',
-        `Unable to fetch Terms of Service. The site blocks external requests.`, 
+        `Unable to fetch Terms of Service. The site blocks external requests.`,
         null, true);
 
       // Show "Go to ToS" button if we have the URL
@@ -394,6 +505,12 @@ function handleScanResult(response) {
   const config = SEVERITY_CONFIG[severity] || SEVERITY_CONFIG[0];
   const clauses = response.clauses || [];
 
+  // Store result for copy functionality
+  currentScanResult = {
+    ...response,
+    hostname: response.hostname || 'unknown'
+  };
+
   // Build status message
   let statusMessage = config.name;
   if (clauses.length > 0 && severity > 0) {
@@ -415,6 +532,9 @@ function handleScanResult(response) {
     resultMessage,
     severity > 0 ? clauses : null // Only show clause list for non-standard
   );
+
+  // Render trust score badge
+  renderTrustBadge(severity, currentScanResult.hostname);
 
   // Show alternatives for cautionary/critical severity
   if (severity >= 2 && response.category) {
@@ -585,6 +705,10 @@ retryBtn.addEventListener('click', handleScan);
 settingsLink.addEventListener('click', openSettings);
 setupSettingsLink.addEventListener('click', openSettings);
 
+// Copy button - copies shareable report to clipboard
+if (copyBtn) {
+  copyBtn.addEventListener('click', copyToClipboard);
+}
 // Go to ToS button - opens the ToS page directly so user can scan from there
 gotoTosBtn.addEventListener('click', () => {
   if (pendingTosUrl) {
