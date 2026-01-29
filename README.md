@@ -5,10 +5,17 @@
 </p>
 
 <p align="center">
-  <img src="https://drive.google.com/uc?export=view&id=1JnEj7KSZDohyNwKvyICnIR9zoVdfGLKn" alt="Image 1" height="100">
-  <img src="https://drive.google.com/uc?export=view&id=1X0JTrv7uQBbp5S5jfbsp41M26VjICBaR" alt="Image 2" height="100">
-  <img src="https://drive.google.com/uc?export=view&id=1xEyLL073GFhpoXUk7pbjYMCpMLoeLO10" alt="Image 3" height="100">
-  <img src="https://drive.google.com/uc?export=view&id=1BK0nBESCDmmwFkFjOc_UM80NHVrmy5vY" alt="Image 4" height="100">
+  <img src="https://drive.google.com/uc?export=view&id=1JnEj7KSZDohyNwKvyICnIR9zoVdfGLKn" alt="Feature 1" width="700"><br>
+  <em>Real-time detection and analysis of Terms of Service</em><br><br>
+  
+  <img src="https://drive.google.com/uc?export=view&id=1X0JTrv7uQBbp5S5jfbsp41M26VjICBaR" alt="Feature 2" width="700"><br>
+  <em>Clear, human-readable explanations of legal jargon</em><br><br>
+  
+  <img src="https://drive.google.com/uc?export=view&id=1xEyLL073GFhpoXUk7pbjYMCpMLoeLO10" alt="Feature 3" width="700"><br>
+  <em>Tiered severity system to highlight critical risks</em><br><br>
+  
+  <img src="https://drive.google.com/uc?export=view&id=1BK0nBESCDmmwFkFjOc_UM80NHVrmy5vY" alt="Feature 4" width="700"><br>
+  <em>Privacy-focused alternatives for risky services</em>
 </p>
 
 <p align="center">
@@ -73,23 +80,6 @@ git clone https://github.com/ssudhiravinesh/BLINDSIGHT-SYNDICATE.git
 ### 3. Start Browsing
 
 Visit any signup page — Blind-Sight will automatically scan the Terms of Service and alert you to concerning clauses.
-
----
-
-## Screenshots
-
-<div align="center">
-  <table>
-    <tr>
-      <td align="center"><strong>Safe Terms</strong></td>
-      <td align="center"><strong>Critical Warning</strong></td>
-    </tr>
-    <tr>
-      <td><img src="https://via.placeholder.com/300x400/22c55e/ffffff?text=✅+Safe" alt="Safe Result"></td>
-      <td><img src="https://via.placeholder.com/300x400/ef4444/ffffff?text=🚨+Critical" alt="Critical Warning"></td>
-    </tr>
-  </table>
-</div>
 
 ---
 
