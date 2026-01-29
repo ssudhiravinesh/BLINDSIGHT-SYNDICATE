@@ -5,10 +5,10 @@
 </p>
 
 <p align="center">
-  <img src="https://drive.google.com/file/d/1JnEj7KSZDohyNwKvyICnIR9zoVdfGLKn/view?usp=sharing" alt="Image 1" height="100">
-  <img src="https://drive.google.com/file/d/1X0JTrv7uQBbp5S5jfbsp41M26VjICBaR/view?usp=sharing" alt="Image 2" height="100">
-  <img src="https://drive.google.com/file/d/1xEyLL073GFhpoXUk7pbjYMCpMLoeLO10/view?usp=sharing" alt="Image 3" height="100">
-  <img src="https://drive.google.com/file/d/1BK0nBESCDmmwFkFjOc_UM80NHVrmy5vY/view?usp=sharing" alt="Image 4" height="100">
+  <img src="https://drive.google.com/uc?export=view&id=1JnEj7KSZDohyNwKvyICnIR9zoVdfGLKn" alt="Image 1" height="100">
+  <img src="https://drive.google.com/uc?export=view&id=1X0JTrv7uQBbp5S5jfbsp41M26VjICBaR" alt="Image 2" height="100">
+  <img src="https://drive.google.com/uc?export=view&id=1xEyLL073GFhpoXUk7pbjYMCpMLoeLO10" alt="Image 3" height="100">
+  <img src="https://drive.google.com/uc?export=view&id=1BK0nBESCDmmwFkFjOc_UM80NHVrmy5vY" alt="Image 4" height="100">
 </p>
 
 <p align="center">
