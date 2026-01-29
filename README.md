@@ -5,17 +5,17 @@
 </p>
 
 <p align="center">
-  <img src="https://drive.google.com/uc?export=view&id=1JnEj7KSZDohyNwKvyICnIR9zoVdfGLKn" alt="Feature 1" width="700"><br>
-  <em>Real-time detection and analysis of Terms of Service</em><br><br>
+  <img src="https://drive.google.com/uc?export=view&id=1JnEj7KSZDohyNwKvyICnIR9zoVdfGLKn" alt="Standard Result" width="700"><br>
+  <em><strong>Standard Result:</strong> Extension showing a green signal for safe terms</em><br><br>
   
-  <img src="https://drive.google.com/uc?export=view&id=1X0JTrv7uQBbp5S5jfbsp41M26VjICBaR" alt="Feature 2" width="700"><br>
-  <em>Clear, human-readable explanations of legal jargon</em><br><br>
+  <img src="https://drive.google.com/uc?export=view&id=1X0JTrv7uQBbp5S5jfbsp41M26VjICBaR" alt="Cautionary Result" width="700"><br>
+  <em><strong>Cautionary Result:</strong> Extension showing an orange signal for notable risks</em><br><br>
   
-  <img src="https://drive.google.com/uc?export=view&id=1xEyLL073GFhpoXUk7pbjYMCpMLoeLO10" alt="Feature 3" width="700"><br>
-  <em>Tiered severity system to highlight critical risks</em><br><br>
+  <img src="https://drive.google.com/uc?export=view&id=1xEyLL073GFhpoXUk7pbjYMCpMLoeLO10" alt="Critical Result" width="700"><br>
+  <em><strong>Critical Result:</strong> Extension showing a red signal for predatory clauses</em><br><br>
   
-  <img src="https://drive.google.com/uc?export=view&id=1BK0nBESCDmmwFkFjOc_UM80NHVrmy5vY" alt="Feature 4" width="700"><br>
-  <em>Privacy-focused alternatives for risky services</em>
+  <img src="https://drive.google.com/uc?export=view&id=1BK0nBESCDmmwFkFjOc_UM80NHVrmy5vY" alt="Settings" width="700"><br>
+  <em><strong>Settings:</strong> Easy configuration of your OpenAI or Gemini API keys</em>
 </p>
 
 <p align="center">
